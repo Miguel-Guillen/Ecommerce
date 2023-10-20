@@ -1,0 +1,7 @@
+.min-vh-75[b-xe2gns09op] { min-height: 80vh; }
+.form-label[b-xe2gns09op], .product-container[b-xe2gns09op] { font-size: 13px !important; }
+.product-container[b-xe2gns09op] {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}

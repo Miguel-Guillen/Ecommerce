@@ -1,0 +1,55 @@
+@model FilterProduct
+
+<div class="row d-flex mt-4">
+    <div class="col-md-3 pe-2 ps-5">
+        <h5>Resultados: @Model.Data.Count</h5>
+        <form asp-action="Products">
+            <div class="mt-4 me-4">
+                <select class="form-select form-select-sm" asp-for="Category" asp-items="ViewBag.Category">
+                    <option selected>Seleccionar</option>
+                </select>
+            </div>
+            <div class="form-check form-switch mt-3">
+                <input class="form-check-input" asp-for="EnvioGratis" type="checkbox" role="switch" id="switch">
+                <label class="form-check-label" asp-for="EnvioGratis" for="switch">Envio Gratis</label>
+            </div>
+            <div class="form-check form-switch mt-2">
+                <input class="form-check-input" asp-for="EnvioInter" type="checkbox" role="switch" id="cinternacional">
+                <label class="form-check-label" asp-for="EnvioInter" for="cinternacional">Envio Internacional</label>
+            </div>
+            <button class="btn-sm btn-primary mt-3" type="submit">
+                <i class="bi bi-search me-1"></i>
+                Buscar
+            </button>
+            @* <div class="mt-4">
+                <button class="btn-sm btn-primary">
+                    <i class="bi bi-grid-fill"></i>
+                    Cuadricula
+                </button>
+                <button class="btn-sm btn-primary">
+                    <i class="bi bi-list"></i>
+                    Lista
+                </button>
+            </div> *@
+        </form>
+    </div>
+    <div class="col-md-9 py-2 ps-4 pe-5">
+        @foreach(var product in Model.Data){
+            <div class="row bg-light mb-3 p-2 shadow border rounded">
+                <div class="col-3 d-flex align-items-center">
+                    <img class="img-fluid" src="@Html.DisplayFor(m => product.Img)" alt="">
+                </div>
+                <div class="col-9">
+                    <h6 class="my-1">@Html.DisplayFor(m => product.Name)</h6>
+                    <p class="mt-2 mb-1">@Html.DisplayFor(m => product.Description)</p>
+                    @if(product.Discount > 0)
+                    {
+                        <span class="mt-3 mb-1 me-3 text-success fw-bold">Descuento @Html.DisplayFor(m => product.Discount)%</span>
+                    }
+                    <span class="mt-3 mb-1 text-primary fw-bold">@Html.DisplayFor(m => product.ShippingType)</span>
+                    <h4 class="my-1">@String.Format("{0:c}", product.Cost)</h4>
+                </div>
+            </div>
+        }
+    </div>
+</div>
