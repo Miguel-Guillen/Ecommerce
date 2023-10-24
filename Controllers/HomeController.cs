@@ -23,9 +23,44 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Catalogue()
+    public IActionResult Category()
     {
-        return View();
+        List<Category> categories = new List<Category> {
+            new Category {
+                Id = 1,
+                Name = "Electrodomesticos",
+                Products = 8
+            },
+            new Category {
+                Id = 2,
+                Name = "Equipo de Computo",
+                Products = 23
+            },
+            new Category {
+                Id = 3,
+                Name = "Alimentos y Consumibles",
+                Products = 15
+            },
+            new Category {
+                Id = 4,
+                Name = "Consolas y Videojuegos",
+                Products = 31
+            }
+        };
+        return View(categories);
+    }
+
+    [Route("Home/CategoryData/{Id}")]
+    public async Task<IActionResult> CategoryData(FilterSeller modal, int Id)
+    {
+        ViewData["Ids"] = Id;
+        var fseller = new FilterSeller()
+        {
+            Category = "",
+            SearchValue = "",
+            Data = await _context.Seller.ToListAsync()
+        };
+        return View(fseller);
     }
 
     public async Task<IActionResult> Products()
@@ -34,6 +69,7 @@ public class HomeController : Controller
             Category = "",
             EnvioGratis = false,
             EnvioInter = false,
+            SearchValue = "",
             Data = await _context.Product.ToListAsync()
         };
 
@@ -70,6 +106,7 @@ public class HomeController : Controller
                 Category = modal.Category,
                 EnvioGratis = modal.EnvioGratis,
                 EnvioInter = modal.EnvioInter,
+                SearchValue = modal.SearchValue,
                 Data = await _context.Product
                 .Where(p => p.Category == Convert.ToInt32(modal.Category))
                 .ToListAsync()
@@ -81,6 +118,7 @@ public class HomeController : Controller
                 Category = modal.Category,
                 EnvioGratis = modal.EnvioGratis,
                 EnvioInter = modal.EnvioInter,
+                SearchValue = modal.SearchValue,
                 Data = await _context.Product
                 .Where(p => p.ShippingType == "Envio Gratis")
                 .ToListAsync()
@@ -92,6 +130,7 @@ public class HomeController : Controller
                 Category = modal.Category,
                 EnvioGratis = modal.EnvioGratis,
                 EnvioInter = modal.EnvioInter,
+                SearchValue = modal.SearchValue,
                 Data = await _context.Product
                 .Where(p => p.ShippingType == "Envio Internacional")
                 .ToListAsync()
@@ -118,6 +157,46 @@ public class HomeController : Controller
         };
         ViewData["Category"] = new SelectList(categories, "Id", "Name");
         return View(listProducts);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Search(FilterProduct value){
+        return RedirectToAction(nameof(SearchData), value);
+    }
+
+    public async Task<IActionResult> SearchData(FilterProduct busqueda){
+        ViewData["searchValue"] = busqueda.SearchValue;
+        List<Category> categories = new List<Category> {
+            new Category {
+                Id = 1,
+                Name = "Electrodomesticos"
+            },
+            new Category {
+                Id = 2,
+                Name = "Equipo de Computo"
+            },
+            new Category {
+                Id = 3,
+                Name = "Alimentos y Consumibles"
+            },
+            new Category {
+                Id = 4,
+                Name = "Consolas y Videojuegos"
+            }
+        };
+        
+        var listData = new FilterProduct(){
+            Category = busqueda.Category,
+            EnvioGratis = busqueda.EnvioGratis,
+            EnvioInter = busqueda.EnvioInter,
+            SearchValue = busqueda.SearchValue,
+            Data = await _context.Product
+            .Where(p => p.Name.Contains(busqueda.SearchValue))
+            .ToListAsync()
+        };
+
+        return View(listData);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

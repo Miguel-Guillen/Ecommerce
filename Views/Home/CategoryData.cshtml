@@ -1,0 +1,19 @@
+@model FilterSeller
+@{
+    ViewData["Title"] = "Search Seller";
+}
+
+<div class="p-4">
+    <h5>Resultados: @Model.Data.Count()</h5>
+    <div class="row mt-4 px-2">
+        @foreach(var sell in Model.Data)
+        {
+            <div class="col-2 border shadow rounded p-3">
+                <h6 class="mb-2">@sell.Name</h6>
+                <p class="my-1">@sell.LastName</p>
+                <p class="my-1">@sell.Email</p>
+                <p class="my-1">@sell.City</p>
+            </div>
+        }
+    </div>
+</div>

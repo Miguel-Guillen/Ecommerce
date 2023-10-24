@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Models
 {
-    public class FilterProduct
+    public class FilterSeller
     {
         public string Category { get; set; }
-        public bool EnvioGratis { get; set; }
-        public bool EnvioInter { get; set; }
         public string SearchValue { get; set; }
-        public List<Product> Data { get; set; }
+        public List<Seller> Data { get; set; }   
     }
 }
