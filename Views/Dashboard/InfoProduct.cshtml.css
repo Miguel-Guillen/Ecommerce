@@ -1,0 +1,6 @@
+.info-product {
+    width: 85%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+p, span, label, .text-danger { font-size: 13px !important; }

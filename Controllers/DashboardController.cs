@@ -154,6 +154,122 @@ namespace Ecommerce.Controllers
             return View(modal);
         }
 
+        [Route("Dashboard/InfoProduct/{Id}")]
+        public async Task<IActionResult> InfoProduct(ProductVM modal, int Id){
+            var product = await _context.Product.FirstOrDefaultAsync(p => p.Id == Id);
+            var seller = await _context.Seller.FirstOrDefaultAsync(s => s.Id == product.SellerId);
+            var infoProduct = new Product() {
+                Id = product.Id,
+                SellerId = product.SellerId,
+                Name = product.Name,
+                Category = product.Category,
+                ShippingType = product.ShippingType,
+                Description = product.Description,
+                Cost = product.Cost,
+                Discount = product.Discount,
+                Stock = product.Stock,
+                Img = product.Img,
+                Date = product.Date,
+                Seller = seller
+            };
+
+            List<Category> categories = new List<Category> {
+                new Category {
+                    Id = 1,
+                    Name = "Electrodomesticos"
+                },
+                new Category {
+                    Id = 2,
+                    Name = "Equipo de Computo"
+                },
+                new Category {
+                    Id = 3,
+                    Name = "Alimentos y Consumibles"
+                },
+                new Category {
+                    Id = 4,
+                    Name = "Consolas y Videojuegos"
+                }
+            };
+            ViewData["Category"] = new SelectList(categories, "Id", "Name");
+            var shipping = new List<object> {
+                new { 
+                    Id = "Envio gratis",
+                    Name = "Envio gratis"
+                },
+                new{
+                    Id = "Comercio internacional",
+                    Name = "Comercio internacional"
+                }
+            };
+            ViewData["ShippingType"] = new SelectList(shipping, "Id", "Name");
+            var sellers = await _context.Seller.ToListAsync();
+            ViewData["Sellers"] = new SelectList(sellers, "Id", "Name");
+            return View(infoProduct);
+        }
+
+        [Route("Dashboard/InfoProduct/{Id}")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> InfoProduct(Product modal, int Id)
+        {    
+            if (ModelState.IsValid && modal.ShippingType != "Seleccionar")
+            {
+                var productFound = await _context.Product.FirstOrDefaultAsync(p => p.Id == modal.Id);
+                if(productFound != null)
+                {
+                    productFound.Id = modal.Id;
+                    productFound.Name = modal.Name;
+                    productFound.Description = modal.Description;
+                    productFound.Category = modal.Category;
+                    productFound.SellerId = modal.SellerId;
+                    productFound.Cost = modal.Cost;
+                    productFound.Discount = modal.Discount;
+                    productFound.Stock = modal.Stock;
+                    productFound.ShippingType = modal.ShippingType;
+                    productFound.Date = DateTime.Now;
+                    productFound.Img = modal.Img;
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(InfoProduct), modal.Id);
+            }
+
+            List<Category> categories = new List<Category> {
+                new Category {
+                    Id = 1,
+                    Name = "Electrodomesticos"
+                },
+                new Category {
+                    Id = 2,
+                    Name = "Equipo de Computo"
+                },
+                new Category {
+                    Id = 3,
+                    Name = "Alimentos y Consumibles"
+                },
+                new Category {
+                    Id = 4,
+                    Name = "Consolas y Videojuegos"
+                }
+            };
+            ViewData["Category"] = new SelectList(categories, "Id", "Name");
+            var shipping = new List<object> {
+                new { 
+                    Id = "Envio gratis",
+                    Name = "Envio gratis"
+                },
+                new{
+                    Id = "Comercio internacional",
+                    Name = "Comercio internacional"
+                }
+            };
+            ViewData["ShippingType"] = new SelectList(shipping, "Id", "Name");
+            var sellers = await _context.Seller.ToListAsync();
+            ViewData["Sellers"] = new SelectList(sellers, "Id", "Name");
+            return View(modal);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -80,3 +80,4 @@ C:\Users\agumguil\OneDrive - Flex\Desktop\Notes\Ecommerce\obj\Debug\net7.0\scope
 C:\Users\agumguil\OneDrive - Flex\Desktop\Notes\Ecommerce\obj\Debug\net7.0\scopedcss\Views\Home\SearchData.cshtml.rz.scp.css
 C:\Users\agumguil\OneDrive - Flex\Desktop\Notes\Ecommerce\obj\Debug\net7.0\scopedcss\Views\Home\Category.cshtml.rz.scp.css
 C:\Users\agumguil\OneDrive - Flex\Desktop\Notes\Ecommerce\obj\Debug\net7.0\scopedcss\Views\Home\CategoryData.cshtml.rz.scp.css
+C:\Users\agumguil\OneDrive - Flex\Desktop\Notes\Ecommerce\obj\Debug\net7.0\scopedcss\Views\Dashboard\InfoProduct.cshtml.rz.scp.css

@@ -18,6 +18,13 @@
 .min-vh-75[b-1vj04yivsb] { min-height: 75vh; }
 p[b-1vj04yivsb] { font-size: 13px !important; }
 .scale[b-1vj04yivsb] { font-size: 30px; }
+/* _content/Ecommerce/Views/Dashboard/InfoProduct.cshtml.rz.scp.css */
+.info-product[b-kvyeckvcsj] {
+    width: 85%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+p[b-kvyeckvcsj], span[b-kvyeckvcsj], label[b-kvyeckvcsj], .text-danger[b-kvyeckvcsj] { font-size: 13px !important; }
 /* _content/Ecommerce/Views/Home/Category.cshtml.rz.scp.css */
 .min-vh-75[b-qypo3yq99v] { min-height: 75vh; }
 p[b-qypo3yq99v] { font-size: 13px !important; }
