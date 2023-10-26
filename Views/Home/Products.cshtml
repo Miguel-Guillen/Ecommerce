@@ -39,12 +39,12 @@
                 </div>
                 <div class="col-9">
                     <h6 class="my-1">@Html.DisplayFor(m => product.Name)</h6>
-                    <button class="btn-sm btn-warning float-end">
-                        <a class="text-decoration-none text-white" asp-controller="Dashboard" asp-action="InfoProduct" asp-route-id="@product.Id">
+                    <a class="text-decoration-none text-white" asp-controller="Dashboard" asp-action="InfoProduct" asp-route-id="@product.Id">
+                        <button class="btn-sm btn-warning float-end">
                             <i class="bi bi-pen me-1"></i>
                             Editar
-                        </a>
-                    </button>
+                        </button>
+                    </a>
                     <p class="mt-2 mb-1">@Html.DisplayFor(m => product.Description)</p>
                     @if(product.Discount > 0)
                     {

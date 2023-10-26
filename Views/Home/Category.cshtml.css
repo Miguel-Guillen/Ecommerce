@@ -1,3 +1,9 @@
 .min-vh-75 { min-height: 75vh; }
 p { font-size: 13px !important; }
 .scale { font-size: 30px; }
+.item-card {
+    background: #2C3E50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4CA1AF, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    height: 140px;
+}

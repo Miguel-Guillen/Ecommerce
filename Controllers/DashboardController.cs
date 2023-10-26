@@ -208,9 +208,9 @@ namespace Ecommerce.Controllers
             return View(infoProduct);
         }
 
-        [Route("Dashboard/InfoProduct/{Id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Dashboard/InfoProduct/{Id}")]
         public async Task<IActionResult> InfoProduct(Product modal, int Id)
         {    
             if (ModelState.IsValid && modal.ShippingType != "Seleccionar")
@@ -268,6 +268,18 @@ namespace Ecommerce.Controllers
             var sellers = await _context.Seller.ToListAsync();
             ViewData["Sellers"] = new SelectList(sellers, "Id", "Name");
             return View(modal);
+        }
+
+        [Route("Dashboard/DeleteProduct/{Id}")]
+        public async Task<IActionResult> DeleteProduct(int Id)
+        {
+            var productFound = await _context.Product.FirstOrDefaultAsync(p => p.Id == Id);
+            if(productFound != null)
+            {
+                _context.Product.Remove(productFound);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

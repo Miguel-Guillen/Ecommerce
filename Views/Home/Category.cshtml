@@ -7,11 +7,10 @@
     <div class="row w-100 d-flex justify-content-center align-items-center">
         @foreach(var cat in Model)
         {
-            <div class="col-2 p-2 border shadow rounded text-center me-4">
+            <div class="col-2 p-2 d-flex align-items-center item-card rounded text-center text-white me-4">
                 <a class="text-reset nav-link" asp-area="" asp-controller="Home" asp-route-id="@cat.Id" asp-action="CategoryData">
-                    <h5 class="mb-2">@cat.Name</h5>
-                    <i class="bi bi-list-task scale"></i>
-                    <p class="mt-1 mb-0">Productos: @cat.Products</p>
+                    <h5 class="mb-3">@cat.Name</h5>
+                    <p class="my-1">Productos: @cat.Products</p>
                 </a>
             </div>
         }
