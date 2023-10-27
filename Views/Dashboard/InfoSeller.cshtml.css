@@ -1,0 +1,6 @@
+.info-seller {
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+p, span, label, .text-danger { font-size: 13px !important; }

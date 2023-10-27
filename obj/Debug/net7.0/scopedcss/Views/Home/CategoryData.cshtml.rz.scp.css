@@ -1,1 +1,15 @@
-p[b-1tkc4qp5u7] { font-size: 13px !important; }
+p[b-1tkc4qp5u7], span[b-1tkc4qp5u7], label[b-1tkc4qp5u7], a[b-1tkc4qp5u7] { font-size: 13px !important; }
+.search-bar[b-1tkc4qp5u7] { width: 500px; }
+.item-container[b-1tkc4qp5u7] {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+@media (min-width: 1400px) {
+    .item-container[b-1tkc4qp5u7] {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}

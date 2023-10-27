@@ -270,6 +270,24 @@ namespace Ecommerce.Controllers
             return View(modal);
         }
 
+        [Route("Dashboard/InfoSeller/{Id}")]
+        public async Task<IActionResult> InfoSeller(SellerVM modal, int Id)
+        {
+            var seller = await _context.Seller.FirstOrDefaultAsync(s => s.Id == Id);
+            var shipping = new List<object> {
+                new { 
+                    Id = "Envio gratis",
+                    Name = "Envio gratis"
+                },
+                new{
+                    Id = "Comercio internacional",
+                    Name = "Comercio internacional"
+                }
+            };
+            ViewData["ShippingType"] = new SelectList(shipping, "Id", "Name");
+            return View(seller);
+        }
+
         [Route("Dashboard/DeleteProduct/{Id}")]
         public async Task<IActionResult> DeleteProduct(int Id)
         {
@@ -277,6 +295,18 @@ namespace Ecommerce.Controllers
             if(productFound != null)
             {
                 _context.Product.Remove(productFound);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Route("Dashboard/DeleteSeller/{Id}")]
+        public async Task<IActionResult> DeleteSeller(int Id)
+        {
+            var sellerFound = await _context.Seller.FirstOrDefaultAsync(p => p.Id == Id);
+            if(sellerFound != null)
+            {
+                _context.Seller.Remove(sellerFound);
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

@@ -5,14 +5,38 @@
 
 <div class="p-4">
     <h5>Resultados: @Model.Data.Count()</h5>
-    <div class="row mt-4 px-2">
+    <div class="item-container mt-4 px-2">
         @foreach(var sell in Model.Data)
         {
-            <div class="col-2 border shadow rounded p-3">
-                <h6 class="mb-2">@sell.Name</h6>
-                <p class="my-1">@sell.LastName</p>
-                <p class="my-1">@sell.Email</p>
-                <p class="my-1">@sell.City</p>
+            <div class="row border shadow rounded py-3 px-1">
+                <h6 class="mb-3">@sell.Name @sell.LastName</h6>
+                <div class="col-6">
+                    <p class="my-1 fw-bold">
+                        <span class="me-1">@sell.Name</span>
+                    </p>
+                    <p class="my-1">
+                        <i class="bi bi-telephone"></i>
+                        @sell.Cellphone
+                    </p>
+                    <p class="my-1">
+                        <i class="bi bi-envelope"></i>
+                        @sell.Email
+                    </p>
+                </div>
+                <div class="col-6">
+                    <p class="my-1">
+                        <i class="bi bi-house"></i>
+                        @sell.City
+                    </p>
+                    <p class="my-1">
+                        <i class="bi bi-geo-alt"></i>
+                        #@sell.Address
+                    </p>
+                    <a class="text-decoration-none float-end mt-2 mb-1 me-3" asp-controller="Dashboard" asp-action="InfoSeller" asp-route-id="@sell.Id">
+                        Abrir
+                        <i class="bi bi-box-arrow-up-right ms-1"></i>
+                    </a>
+                </div>
             </div>
         }
     </div>
