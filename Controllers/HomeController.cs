@@ -167,6 +167,11 @@ public class HomeController : Controller
 
     public async Task<IActionResult> SearchData(FilterProduct busqueda){
         ViewData["searchValue"] = busqueda.SearchValue;
+        if(busqueda.SearchValue == "")
+        {
+            return RedirectToAction(nameof(Products));
+        }
+
         List<Category> categories = new List<Category> {
             new Category {
                 Id = 1,
@@ -185,7 +190,6 @@ public class HomeController : Controller
                 Name = "Consolas y Videojuegos"
             }
         };
-        
         var listData = new FilterProduct(){
             Category = busqueda.Category,
             EnvioGratis = busqueda.EnvioGratis,
@@ -197,6 +201,37 @@ public class HomeController : Controller
         };
 
         return View(listData);
+    }
+
+    public async Task<IActionResult> ReorderData(){
+        var listProducts = new FilterProduct() {
+            Category = "",
+            EnvioGratis = false,
+            EnvioInter = false,
+            SearchValue = "",
+            Data = await _context.Product.ToListAsync()
+        };
+
+        List<Category> categories = new List<Category> {
+            new Category {
+                Id = 1,
+                Name = "Electrodomesticos"
+            },
+            new Category {
+                Id = 2,
+                Name = "Equipo de Computo"
+            },
+            new Category {
+                Id = 3,
+                Name = "Alimentos y Consumibles"
+            },
+            new Category {
+                Id = 4,
+                Name = "Consolas y Videojuegos"
+            }
+        };
+        ViewData["Category"] = new SelectList(categories, "Id", "Name");
+        return View(listProducts);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

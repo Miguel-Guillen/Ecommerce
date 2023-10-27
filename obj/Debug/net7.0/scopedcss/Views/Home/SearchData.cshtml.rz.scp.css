@@ -1,1 +1,2 @@
-p[b-lg1biscqum] { font-size: 13px; }
+p[b-lg1biscqum], span[b-lg1biscqum], label[b-lg1biscqum] { font-size: 13px !important; }
+.search-bar[b-lg1biscqum] { width: 400px; }

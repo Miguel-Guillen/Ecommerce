@@ -1,2 +1,2 @@
-p, span, label { font-size: 13px; }
+p, span, label { font-size: 13px !important; }
 .search-bar { width: 400px; }

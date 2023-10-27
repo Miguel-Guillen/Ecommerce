@@ -1,0 +1,15 @@
+p, span, label { font-size: 13px !important; }
+.search-bar { width: 500px; }
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+}
+
+@media (min-width: 1400px) {
+    .item-container {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}

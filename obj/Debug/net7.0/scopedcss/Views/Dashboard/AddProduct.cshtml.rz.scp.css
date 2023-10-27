@@ -1,5 +1,10 @@
 .min-vh-75[b-xe2gns09op] { min-height: 80vh; }
 .form-label[b-xe2gns09op], .product-container[b-xe2gns09op] { font-size: 13px !important; }
+.bg-header[b-xe2gns09op] { 
+    background: #2C3E50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #217481, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #217481, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+}
 .product-container[b-xe2gns09op] {
     width: 80%;
     max-width: 1200px;

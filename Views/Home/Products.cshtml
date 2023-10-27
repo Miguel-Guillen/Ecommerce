@@ -14,22 +14,27 @@
             </div>
             <div class="form-check form-switch mt-3">
                 <input class="form-check-input" asp-for="EnvioGratis" type="checkbox" role="switch" id="switch">
-                <label class="form-check-label" asp-for="EnvioGratis" for="switch">Envio Gratis</label>
+                <label class="form-check-label" for="switch">Envio Gratis</label>
             </div>
             <div class="form-check form-switch mt-2">
                 <input class="form-check-input" asp-for="EnvioInter" type="checkbox" role="switch" id="cinternacional">
-                <label class="form-check-label" asp-for="EnvioInter" for="cinternacional">Envio Internacional</label>
+                <label class="form-check-label" for="cinternacional">Envio Internacional</label>
             </div>
-            <button class="btn-sm btn-primary mt-3" type="submit">
+            <button class="btn-sm btn-primary mt-4" type="submit">
                 <i class="bi bi-search me-1"></i>
                 Buscar
             </button>
         </form>
     </div>
-    <div class="col-md-9 py-2 ps-4 pe-5">
+    <div class="col-md-9 ps-4 pe-5">
         <div class="d-flex justify-content-end mb-3">
-            <form asp-action="Search" class="search-bar" role="search">
+            <form asp-action="Search" class="search-bar me-2" role="search">
                 <input class="form-control form-control-sm" asp-for="SearchValue" type="search" placeholder="Search">
+            </form>
+            <form asp-action="ReorderData">
+                <button class="btn-sm btn-primary" type="submit">
+                    <i class="bi bi-grid-fill"></i>
+                </button>
             </form>
         </div>
         @foreach(var product in Model.Data){
@@ -40,7 +45,7 @@
                 <div class="col-9">
                     <h6 class="my-1">@Html.DisplayFor(m => product.Name)</h6>
                     <a class="text-decoration-none text-white" asp-controller="Dashboard" asp-action="InfoProduct" asp-route-id="@product.Id">
-                        <button class="btn-sm btn-warning float-end">
+                        <button class="btn-sm btn-warning text-white float-end">
                             <i class="bi bi-pen me-1"></i>
                             Editar
                         </button>

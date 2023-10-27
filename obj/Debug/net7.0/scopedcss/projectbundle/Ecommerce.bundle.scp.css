@@ -1,6 +1,11 @@
 /* _content/Ecommerce/Views/Dashboard/AddProduct.cshtml.rz.scp.css */
 .min-vh-75[b-xe2gns09op] { min-height: 80vh; }
 .form-label[b-xe2gns09op], .product-container[b-xe2gns09op] { font-size: 13px !important; }
+.bg-header[b-xe2gns09op] { 
+    background: #2C3E50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #217481, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #217481, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+}
 .product-container[b-xe2gns09op] {
     width: 80%;
     max-width: 1200px;
@@ -9,6 +14,11 @@
 /* _content/Ecommerce/Views/Dashboard/AddSeller.cshtml.rz.scp.css */
 .min-vh-75[b-yymq639hk5] { min-height: 80vh; }
 .form-label[b-yymq639hk5], .seller-container[b-yymq639hk5] { font-size: 13px !important; }
+.bg-header[b-yymq639hk5] { 
+    background: #2C3E50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #217481, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #217481, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+}
 .seller-container[b-yymq639hk5] {
     width: 80%;
     max-width: 1200px;
@@ -43,10 +53,27 @@ p[b-qypo3yq99v] { font-size: 13px !important; }
 /* _content/Ecommerce/Views/Home/CategoryData.cshtml.rz.scp.css */
 p[b-1tkc4qp5u7] { font-size: 13px !important; }
 /* _content/Ecommerce/Views/Home/Products.cshtml.rz.scp.css */
-p[b-esnh9uebqn], span[b-esnh9uebqn], label[b-esnh9uebqn] { font-size: 13px; }
+p[b-esnh9uebqn], span[b-esnh9uebqn], label[b-esnh9uebqn] { font-size: 13px !important; }
 .search-bar[b-esnh9uebqn] { width: 400px; }
+/* _content/Ecommerce/Views/Home/ReorderData.cshtml.rz.scp.css */
+p[b-jovpu75ks1], span[b-jovpu75ks1], label[b-jovpu75ks1] { font-size: 13px !important; }
+.search-bar[b-jovpu75ks1] { width: 500px; }
+.item-container[b-jovpu75ks1] {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+}
+
+@media (min-width: 1400px) {
+    .item-container[b-jovpu75ks1] {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
 /* _content/Ecommerce/Views/Home/SearchData.cshtml.rz.scp.css */
-p[b-lg1biscqum] { font-size: 13px; }
+p[b-lg1biscqum], span[b-lg1biscqum], label[b-lg1biscqum] { font-size: 13px !important; }
+.search-bar[b-lg1biscqum] { width: 400px; }
 /* _content/Ecommerce/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */

@@ -1,0 +1,48 @@
+@model FilterProduct
+@{
+    ViewData["Title"] = "Reorder Products";
+}
+
+<div class="p-4">
+    <div class="row">
+        <div class="col-4">
+            <h5>Resultados: @Model.Data.Count()</h5>
+        </div>
+        <div class="col-8">
+            <form asp-action="Products" class="d-flex align-items-center justify-content-end">
+                <div class="me-4">
+                    <select class="form-select form-select-sm" asp-for="Category" asp-items="ViewBag.Category">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+                <div class="form-check form-switch me-3">
+                    <input class="form-check-input" asp-for="EnvioGratis" type="checkbox" role="switch" id="switch">
+                    <label class="form-check-label" for="switch">Envio Gratis</label>
+                </div>
+                <div class="form-check form-switch me-4">
+                    <input class="form-check-input" asp-for="EnvioInter" type="checkbox" role="switch" id="cinternacional">
+                    <label class="form-check-label" for="cinternacional">Envio Internacional</label>
+                </div>
+                <button class="btn-sm btn-primary" type="submit">
+                    <i class="bi bi-search me-1"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row item-container mt-4">
+        @foreach(var product in Model.Data)
+        {
+            <div class="border shadow rounded py-1 px-0 mx-2">
+                <a class="text-reset nav-link" asp-controller="Dashboard" asp-action="InfoProduct" asp-route-id="@product.Id">
+                    <img class="img-fluid" src="@product.Img" alt="">
+                    <h6 class="mt-3">@product.Name</h6>
+                    <p class="my-1"> 
+                        <span class="fw-bold me-3 fs-5">@String.Format("{0:c}", product.Cost)</span>
+                        <span class="text-success fw-bold float-end fs-6 text-decoration-line-through">-@product.Discount%</span>
+                    </p>
+                </a>
+            </div>
+        }
+    </div>
+</div>
